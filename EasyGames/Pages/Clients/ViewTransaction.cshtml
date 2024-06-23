@@ -1,0 +1,77 @@
+﻿@page 
+@model EasyGames.Pages.Clients.ViewTransactionModel
+@{
+    ViewData["Title"] = "View Transactions";
+}
+
+<br>
+<h3 style="text-align: center;">List Of Client Transactions</h3>
+<br>
+
+<div class="row mb-3">
+
+    <form method="get" class="form-inline d-flex align-items-center">
+        
+        <button type="button" class="contactSearch-btn" onclick="goBack()">
+            <span class="glow"></span>
+            <span class="contacthome-btn-content">Home</span>
+        </button>
+        
+
+
+    </form>
+
+</div>
+<br>
+
+
+<table class="table" style="border: 2px solid #9dc3f7;">
+    <thead>
+        <tr>
+            <th style="border: 2px solid #9dc3f7;">TransactionID</th>
+            <th style="border: 2px solid #9dc3f7;">Amount</th>
+            <th style="border: 2px solid #9dc3f7;">Transaction Type</th>
+            <th style="border: 2px solid #9dc3f7;">CLientID</th>
+            <th style="border: 2px solid #9dc3f7;">Comments</th>
+            <th style="border: 2px solid #9dc3f7;">Actions</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.listTransactions)
+        {
+            <tr>
+                <td style="border: 2px solid #9dc3f7;">@item.Transactionid</td>
+                <td style="border: 2px solid #9dc3f7;">@item.Amount</td>
+                <td style="border: 2px solid #9dc3f7;">@item.Transactiontypeid</td>
+                <td style="border: 2px solid #9dc3f7;">@item.Clientid</td>
+                <td style="border: 2px solid #9dc3f7;">@item.Comment</td>
+                <td style="border: 2px solid #9dc3f7;">
+                    <a class="btn btn-primary btn-sm" href="/Clients/EditComment?id=@item.Transactionid">Edit Comment</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@item.Transactionid" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+
+
+            </tr>
+
+        }
+
+    </tbody>
+   
+    
+</table>
+
+
+<script>
+    function goBack() {
+
+        window.location.href = '/CLients/Index';
+
+    }
+</script>
+
+
+

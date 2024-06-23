@@ -1,0 +1,111 @@
+﻿@page
+@model EasyGames.Pages.Clients.IndexModel
+@{
+    ViewData["Title"] = "Easy Games Clients";
+}
+
+<br>
+<h3 style="text-align: center;">List Of Clients</h3>
+<br>
+
+<div class="row mb-3">
+    
+
+    <form method="get" class="form-inline d-flex align-items-center">
+        <div class="col-sm-2">
+            <input type="text" class="form-control" name="clientID" value="@Model.ClientID" style="background-color: #9dc3f7;" placeholder="Enter Client ID">
+        </div>
+        <button type="submit" class="contactSearch-btn" >
+            <span class="glow"></span>
+            <span class="contactSearch-btn-content">Search</span>
+        </button>
+        <button type ="button" class="contactclient-btn" onclick="navigateToCreatePage()">
+            <span class="glow"></span>
+            <span class="contactclient-btn-content">Add Client</span>
+        </button>
+        <button type="button" class="contacthome-btn" onclick="goBack()">
+            <span class="glow"></span>
+            <span class="contacthome-btn-content">Home</span>
+        </button>
+        <div class="col-sm-2 offset-sm-8">
+            <form  class="col-sm-2 ml-4">
+                <select class="form-control" name="filtertype" style="background-color: #9dc3f7;" onchange="this.form.submit()">
+                    <option value="">Select Sort By</option>
+                    <option value="NameAsc">Name A-Z</option>
+                    <option value="NameDesc">Name Z-A</option>
+                    <option value="SurnameAsc">Surname A-Z</option>
+                    <option value="SurnameDesc">Surname Z-A</option>
+                    <option value="ClientBalanceAsc">Client Balance 1-10</option>
+                    <option value="ClientBalanceDesc">Client Balance 10-1</option>
+                </select>
+            </form>
+           </div>
+        
+
+    </form>
+
+    
+</div>
+<br>
+
+
+<table class="table" style="border: 2px solid #9dc3f7;">
+    <thead>
+        <tr>
+            <th style="border: 2px solid #9dc3f7;">CLientID</th>
+            <th style="border: 2px solid #9dc3f7;">Name</th>
+            <th style="border: 2px solid #9dc3f7;">Surname</th>
+            <th style="border: 2px solid #9dc3f7;">CLient Blance</th>
+            <th style="border: 2px solid #9dc3f7; width: 400px;">Actions</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.listClients)
+        {
+            <tr>
+                <td style="border: 2px solid #9dc3f7;">@item.clientid</td>
+                <td style="border: 2px solid #9dc3f7;">@item.Name</td>
+                <td style="border: 2px solid #9dc3f7;">@item.Surname</td>
+                <td style="border: 2px solid #9dc3f7;">@item.ClientBalance</td>
+                <td style="border: 2px solid #9dc3f7 ;">
+                    <a class="btn btn-primary btn-sm" href="/Clients/Edit?id=@item.clientid">Edit</a>
+                    <a class="btn btn-primary btn-sm" href="/Clients/AddTransaction?id=@item.clientid">Add Transaction</a>
+                    <a class="btn btn-primary btn-sm" href="/Clients/ViewTransaction?id=@item.clientid">View Transactions</a>
+                </td>
+
+
+            </tr>
+
+        }
+
+    </tbody>
+    
+</table>
+
+
+<script>
+    function navigateToCreatePage() {
+        window.location.href = '/Clients/Create';
+    }
+</script>
+
+<script>
+    function navigateToSearchPage() {
+        window.location.href = '/Clients/Index';
+    }
+</script>
+
+<script>
+    function goBack() {
+
+        //window.history.back();
+        window.location.href = '/';
+        
+    }
+</script>
+
+
+
+

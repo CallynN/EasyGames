@@ -1,0 +1,77 @@
+﻿@page
+@model EasyGames.Pages.Clients.EditModel
+@{
+    ViewData["Title"] = "Edit Client";
+}
+
+
+<br>
+<h3 style="text-align: center;">Edit Client</h3>
+<br>
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <strong>@Model.errorMessage</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+
+    </div>
+
+}
+
+<form method="POST">
+
+    <input type="hidden" name="id" value="@Model.clientInfo.clientid">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Comment</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="name" value="@Model.clientInfo.Name" style="background-color: #9dc3f7;" placeholder="Enter Transaction Comment">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Surname</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="surname" value="@Model.clientInfo.Surname">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Client Balance</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="clientbalance" value="@Model.clientInfo.ClientBalance">
+        </div>
+    </div>
+
+    @if (Model.successMessage2.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                    <strong>@Model.successMessage2</strong>
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' arial-label='Close'></button>
+
+                </div>
+            </div>
+
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" onclick="goBack()" role="button">Cancle</a>
+        </div>
+    </div>
+
+</form>
+
+
+<script>
+    function goBack() {
+
+        window.history.back();
+
+
+    }
+</script>
