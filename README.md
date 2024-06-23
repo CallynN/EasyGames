@@ -19,7 +19,7 @@ Before starting the project, follow these steps to set up the database:
    }
 
 
------------------------------------------------------------------------------------BEGINNING OF SCRIPT---------------------------------------------------------------------------------------
+----------------------------------------------------------BEGINNING OF SCRIPT---------------------------------------------------------------------------------------
 -- Create the database EasyGames if it does not exist
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'EasyGames')
 BEGIN
